@@ -1,5 +1,8 @@
 #include <iostream>
-#include <random>
+#include <random> 
+#include <fstream>
+#define ARRAY_SIZE 6
+int Array[ARRAY_SIZE];
 
 int generateRandomNumber(int minRange, int maxRange) {
     std::random_device rd;
@@ -31,19 +34,33 @@ int generateRandomOddNumber(int minRange, int maxRange) {
 }
 
 int main() {
-    int number1to100 = generateRandomNumber(1, 100);
-    int number1to50 = generateRandomNumber(1, 50);
-    int number7to77 = generateRandomNumber(7, 77);
-    int number2to64 = generateRandomNumber(2, 64);
-    int evenNumber4to82 = generateRandomEvenNumber(4, 82);
-    int oddNumber7to77 = generateRandomOddNumber(7, 77);
+    Array[0] = generateRandomNumber(1, 100);
+    Array[1] = generateRandomNumber(1, 50);
+    Array[2] = generateRandomNumber(7, 77);
+    Array[3] = generateRandomNumber(2, 64);
+    Array[4] = generateRandomEvenNumber(4, 82);
+    Array[5] = generateRandomOddNumber(7, 77);
 
-    std::cout << "Random number from 1 to 100: " << number1to100 << std::endl;
-    std::cout << "Random number from 1 to 50: " << number1to50 << std::endl;
-    std::cout << "Random number from 7 to 77: " << number7to77 << std::endl;
-    std::cout << "Random number from 2 to 64: " << number2to64 << std::endl;
-    std::cout << "Random even number from 4 to 82: " << evenNumber4to82 << std::endl;
-    std::cout << "Random odd number from 7 to 77: " << oddNumber7to77 << std::endl;
+    std::cout << "Random number from 1 to 100: " << Array[0] << std::endl;
+    std::cout << "Random number from 1 to 50: " << Array[1] << std::endl;
+    std::cout << "Random number from 7 to 77: " << Array[2] << std::endl;
+    std::cout << "Random number from 2 to 64: " << Array[3] << std::endl;
+    std::cout << "Random even number from 4 to 82: " << Array[4] << std::endl;
+    std::cout << "Random odd number from 7 to 77: " << Array[5] << std::endl;
+
+    // Save the array to a text file
+    std::ofstream outputFile("Output.txt");
+    if (!outputFile.is_open()) {
+        std::cerr << "Failed to create the output file." << std::endl;
+        return 0;
+    }
+
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        outputFile << Array[i] << "\n";
+    }
+    outputFile.close();
+
+    std::cout << "Array successfully created and saved to 'Output.txt'." << std::endl;
 
     return 0;
 }
