@@ -4,16 +4,16 @@
 
 int main() {
     const long arraySize = 517440;
-    long numbers[arraySize];
+    long Array[arraySize];
 
     // Generate unique random numbers
     srand(time(nullptr));
-    for (int i = 0; i < arraySize; ++i) {
-        numbers[i] = i + 1;
+    for (int i = 0; i < arraySize; i++) {
+        Array[i] = i + 1;
     }
     for (int i = 0; i < arraySize - 1; ++i) {
         int j = i + rand() % (arraySize - i);
-        std::swap(numbers[i], numbers[j]);
+        std::swap(Array[i], Array[j]);
     }
 
     // Save the array to a text file
@@ -24,7 +24,7 @@ int main() {
     }
 
     for (int i = 0; i < arraySize; ++i) {
-        outputFile << numbers[i] << "\n";
+        outputFile << Array[i] << "\n";
     }
     outputFile.close();
 
